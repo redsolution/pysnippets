@@ -15,6 +15,12 @@ def date_from_stamp(timestamp):
     return datetime.date.fromtimestamp(timestamp)
 
 
+def datetime_to_stamp(dt):
+    if not dt:
+        return dt
+    return time.mktime(dt.timetuple())
+
+
 def datetime_from_stamp(timestamp):
     if not timestamp:
         return timestamp
