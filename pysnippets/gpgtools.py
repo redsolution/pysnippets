@@ -19,3 +19,19 @@ def sign_data(data):
 
 def get_signed_json(data):
     return json.dumps({'sign': sign_data(data).data, 'data': data})
+
+
+def encrypt_data(data, key_name):
+    gpg = gnupg.GPG()
+    enc = gpg.encrypt(data, key_name)
+    if enc.data and enc.status == 'encryption ok':
+        return enc.data
+    else:
+        return None
+
+
+def decrypt_data(data):
+    if not data:
+        return data
+    gpg = gnupg.GPG()
+    return gpg.decrypt(data).data
